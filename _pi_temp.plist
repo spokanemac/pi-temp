@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PluginName</key>
+	<string>Raspbery Pi Temperature</string>
+	<key>PluginUUID</key>
+	<string>fb336276-af10-4fcd-8388-490052cf415c</string>
+	<key>PluginVersion</key>
+	<string>0.1</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/usr/share/monitoringclient/plugins/_pi_temp.plugin</string>
+	</array>
+</dict>
+</plist>

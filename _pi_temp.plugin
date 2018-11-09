@@ -1,0 +1,23 @@
+#!/bin/bash
+# Plugin:       Raspberry Pi Temperature Monitor
+# Description:  Watchman Monitoring custom plugin to report Raspberry Pi CPU & GPU Temperature
+# Author:       Jack-Daniyel Strong <jack@jdstrong.com>
+# Date:         9-Nov-2018
+# Version:      0.1
+# ==============================================================================
+
+
+cpuTemp0=$(cat /sys/class/thermal/thermal_zone0/temp)
+cpuTemp1=$(($cpuTemp0/1000))
+cpuTemp2=$(($cpuTemp0/100))
+cpuTempM=$(($cpuTemp2 % $cpuTemp1))
+
+gpuTemp0=$(/opt/vc/bin/vcgencmd measure_temp)
+gpuTemp0=${gpuTemp0//\'/º}
+gpuTemp0=${gpuTemp0//temp=/}
+
+
+echo CPU Temp: $cpuTemp1"."$cpuTempM"ºC  $(python -c "print($cpuTemp1"."$cpuTempM*9/5+32)")"ºF
+echo GPU Temp: $gpuTemp0 $(python -c "print($(/opt/vc/bin/vcgencmd measure_temp | sed "s/temp=//" | sed "s/'C//")*9/5+32)")ºF
+
+exit 0
